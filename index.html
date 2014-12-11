@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<script src="./two.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+
 
 	<title></title>
 </head>
@@ -25,6 +27,7 @@
 		// var polygon = two.makePolygon(113.39745962155614, 250, 200, 300, 286.60254037844385, 250, 286.60254037844385, 150, 200, 100, 113.39745962155614, 150, true, false);
 		// var polygon = two.makePolygon(260, 200, 230, 251.96152422706632, 170, 251.96152422706632, 140, 200, 169.99999999999997, 148.03847577293368, 229.99999999999997, 148.03847577293365, 260, 199.99999999999997, true, false)
 
+
 		// The object returned has many stylable properties:
 		// circle.fill = '#FF8000';
 		// circle.stroke = 'orangered'; // Accepts all valid css color
@@ -38,6 +41,13 @@
 		// 	this.polygon = polygon;
 		// }
 
+
+   function getRandomColor() {
+            return 'rgb('
+              + Math.floor(Math.random() * 255) + ','
+              + Math.floor(Math.random() * 255) + ','
+              + Math.floor(Math.random() * 255) + ')';
+          }
 
 
 var hexagon = function(x, y) {
@@ -58,16 +68,35 @@ var hexagon = function(x, y) {
 		var y5 = y-c;
 		var x6 = x - b;
 		var y6 = y - c/2;
-		// console.log(coords)\
 		console.log(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6);
-		two.makePolygon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, true, false)
+		var tile = two.makePolygon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, true, false)
+		tile.fill = '#7c9673'
+		tile.stroke = '#394635'
+		return tile
 	};
 
-// var polygon = two.makePolygon()
-hexagon(250, 250);
-hexagon(450, 450);
-hexagon(600, 600);
-hexagon(800, 400)
+
+	var firstHexagon = hexagon(250, 250);
+
+
+// var tile2 = firstHexagon.clone()
+// tile2.translation.set(500, 0)
+// firstHexagon.clone(350, 350)
+// firstHexagon.fill = '#FF8000'
+
+$(function() {
+	var $hex = $(firstHexagon._renderer.elem)
+	$hex.css('cursor', 'pointer').on('click', function(event) {
+		firstHexagon.fill = getRandomColor();
+		two.update()
+	});
+})
+
+
+
+
+
+
 
 		// var coordinates = function() {
 		// 	 $elem.on("click", function(e){
