@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="./two.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id='draw-shapes'>
+			<div></div>
+		</div>
+	<script>
+
+
+		var elem = document.getElementById('draw-shapes').children[0];
+		var params = { width: 1200, height: 900 };
+		var two = new Two(params).appendTo(elem);
+
+		var hexagon = function(x, y) {
+				var x = x;
+				var y = y;
+				var c = 90;
+			  var b = Math.sqrt(c*c - (c/2)*(c/2));
+				var coords = [x - b, y + c/2, x, y+ c, x + b, y + c/2, x + b, y - c/2, x, y-c, x - b, y - c/2];
+				var x1 = x - b;
+				var y1 = y + c/2;
+				var x2 = x;
+				var y2 = y+ c;
+				var x3 = x + b;
+				var y3 = y + c/2;
+				var x4 = x + b;
+				var y4 = y - c/2;
+				var x5 = x;
+				var y5 = y-c;
+				var x6 = x - b;
+				var y6 = y - c/2;
+				return two.makePolygon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, true, false)
+			};
+
+			var makeGrid = function(x, y) {
+				var height = 136;
+				var diameter = 157;
+				var x = x - diameter;
+				var y = y - 2 * height;
+				var hexagons = [];
+
+				for (i = 0; i < 3; i++) { //make top row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+
+				var x = x - 3.5 * diameter;
+				var y = y + height;
+
+				for (i = 0; i < 4; i++) { //make second row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+
+				var x = x - 4.5 * diameter;
+				var y = y + height;
+
+				for (i = 0; i < 5; i++) { //make centre row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+
+				var x = x - 4.5 * diameter;
+				var y = y + height;
+
+				for (i = 0; i < 4; i++) { //make fourth row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+
+				var x = x - 3.5 * diameter;
+				var y = y + height;
+
+				for (i = 0; i < 3; i++) { //make fifth row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+				return hexagons;
+			}
+		makeGrid(430,430);
+		two.update();
+	</script>
+	</body>
+</html>
