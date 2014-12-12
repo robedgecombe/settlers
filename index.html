@@ -4,13 +4,14 @@
 	<meta charset="UTF-8">
 	<script src="./two.js"></script>
 	<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+	<script src="./test_data.js"></script>
 
 </head>
 	<body>
 		<div id ="draw-shapes"><div></div></div>
 		<script>
 
-
+console.log(data)
 
 
 		var elem = document.getElementById('draw-shapes').children[0];
@@ -23,7 +24,6 @@
 				var c = 90;
 			  var b = Math.sqrt(c*c - (c/2)*(c/2));
 				var coords = [x - b, y + c/2, x, y+ c, x + b, y + c/2, x + b, y - c/2, x, y-c, x - b, y - c/2];
-				console.log(coords)
 				var x1 = x - b;
 				var y1 = y + c/2;
 				var x2 = x;
@@ -55,13 +55,20 @@
 
 			var printHexagon = function(serverX, serverY) {
 				var hexagonCentre = findHexagonCentrePoint(serverX, serverY, 500, 500);
-				var hexagon = makeHexagon(hexagonCentre[0], hexagonCentre[1]) 
+				var hexagon = makeHexagon(hexagonCentre[0], hexagonCentre[1])
+				console.log(hexagon)
 			}
 
+			var hexagons = []
 
+			var printBoard = function(tiles) {
+			  tiles.forEach(function(tile) {
+			  	var hexagon = printHexagon(tile.serverX, tile.serverY)
+			  	two.update();
+			  })
+			}
 
-			
-
+		
   	 function getRandomColor() {
             return 'rgb('
               + Math.floor(Math.random() * 255) + ','
@@ -70,20 +77,21 @@
           };
 
 
-
 //************ keeping as reference for click events
-// 		$(function() {
-// 			hexagons.forEach(function(hexagon) {
-// 				var $hex = $(hexagon._renderer.elem)
-// 					$hex.css('cursor', 'pointer').on('click', function(event) {
-// 					console.log(x)
-// 					hexagon.fill = getRandomColor();
-// 					two.update()
-// 					})
-// 			$hex
-// 		});
-// 	})
-// }
+		$(function() {
+			printBoard(data.board.tiles)
+
+			// hexagons.forEach(function(hexagon) {
+			// 	var $hex = $(hexagon._renderer.elem)
+			// 	$hex.css('cursor', 'pointer').on('click', function(event) {
+			// 		console.log(x)
+			// 		hexagon.fill = getRandomColor();
+			// 		two.update()
+			// 	})
+			// 	$hex
+			});
+		// })
+
 
 
 
