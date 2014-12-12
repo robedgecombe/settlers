@@ -69,6 +69,8 @@ console.log(data)
 
 			var printBoard = function(tiles) {
 				makeBoard(tiles)
+
+				two.update()
 				
 				hexagons.forEach(function(hexagon) {
 					var $hex = $(hexagon._renderer.elem)
@@ -94,6 +96,7 @@ console.log(data)
 //************ keeping as reference for click events
 		$(function() {
 			printBoard(data.board.tiles)
+
 		});
 
 
