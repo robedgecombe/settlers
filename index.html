@@ -35,60 +35,55 @@
 				var y5 = y-c;
 				var x6 = x - b;
 				var y6 = y - c/2;
-				two.makePolygon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, true, false)
+				return two.makePolygon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, true, false)
 			};
 
 			var makeGrid = function(x, y) {
 				var height = 136;
 				var diameter = 157;
-				var centre_x = x;
-				var starting_x = x - 2 * diameter;
-				var centre_y = y;
-				var top_y = y - 2 * height;
+				var x = x - diameter;
+				var y = y - 2 * height;
+				var hexagons = [];
 
-				for (i = 0; i < 5; i++) { //make centre row
-					hexagon(starting_x, centre_y);
-					var starting_x = starting_x + diameter;
+				for (i = 0; i < 3; i++) { //make top row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
 				}
 
+				var x = x - 3.5 * diameter;
+				var y = y + height;
 
-				// hexagon(x, y);
-				// hexagon(x-diameter, y);
-				// hexagon(x-diameter*2, y);
-				// hexagon(x+diameter, y);
-				// hexagon(x+diameter*2, y);
+				for (i = 0; i < 4; i++) { //make second row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+
+				var x = x - 4.5 * diameter;
+				var y = y + height;
+
+				for (i = 0; i < 5; i++) { //make centre row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+
+				var x = x - 4.5 * diameter;
+				var y = y + height;
+
+				for (i = 0; i < 4; i++) { //make fourth row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+
+				var x = x - 3.5 * diameter;
+				var y = y + height;
+
+				for (i = 0; i < 3; i++) { //make fifth row
+					hexagons.push(hexagon(x, y));
+					var x = x + diameter;
+				}
+				return hexagons;
 			}
-
-			// hexGrid(430,430);
-// yes i totally hard-coded the grid....
-	// var hex0 = hexagon(273, 158); //row1
-	// var hex1 = hexagon(430, 158); //row1
-	// var hex2 = hexagon(587, 158); //row1
-	// var hex3 = hexagon(194.5, 294); //row2
-	// var hex4 = hexagon(351.5, 294); //row2
-	// var hex5 = hexagon(508.5, 294); //row2
-	// var hex6 = hexagon(665.5, 294); //row2
-	// var hex7 = hexagon(116, 430); //row3
-	// var hex8 = hexagon(273, 430); //row3
-	// var hex9 = hexagon(430, 430); //row3
-	// var hex10 = hexagon(587, 430); //row3
-	// var hex11 = hexagon(744, 430); //row3
-	// var hex12 = hexagon(194.5, 566); //row4
-	// var hex13 = hexagon(351.5, 566); //row4
-	// var hex14 = hexagon(508.5, 566); //row4
-	// var hex15 = hexagon(665.5, 566); //row4
-	// var hex16 = hexagon(273, 702); //row5
-	// var hex17 = hexagon(430, 702); //row5
-	// var hex18 = hexagon(587, 702); //row5
-
-
-
-
-
-
-
-
-
+		makeGrid(430,430);
 		two.update();
 	</script>
 	</body>
