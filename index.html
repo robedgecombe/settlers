@@ -1,0 +1,129 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="./two.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+
+
+	<title></title>
+</head>
+<body>
+	<div id='draw-shapes'>
+		<div></div>
+	</div>
+
+	<script>
+		var elem = document.getElementById('draw-shapes').children[0];
+		var params = { width: 1200, height: 1200 };
+		var two = new Two(params).appendTo(elem);
+		console.log(two.scene)
+		// two has convenience methods to create shapes.
+		// var circle = two.makeCircle(72, 100, 50);
+		// var rect = two.makeRectangle(213, 100, 200, 100);
+		// var polygon = two.makePolygon(113.397459622, 250, 200, 300, 286.60254037844386, 250, 286.60254037844386, 150, 200, 100, 113.397459622, 150, true, false); 
+
+		// this one is from hexgon method :
+		// var polygon = two.makePolygon(113.39745962155614, 250, 200, 300, 286.60254037844385, 250, 286.60254037844385, 150, 200, 100, 113.39745962155614, 150, true, false);
+		// var polygon = two.makePolygon(260, 200, 230, 251.96152422706632, 170, 251.96152422706632, 140, 200, 169.99999999999997, 148.03847577293368, 229.99999999999997, 148.03847577293365, 260, 199.99999999999997, true, false)
+
+
+		// The object returned has many stylable properties:
+		// circle.fill = '#FF8000';
+		// circle.stroke = 'orangered'; // Accepts all valid css color
+		// circle.linewidth = 5;
+
+		// rect.fill = 'rgb(0, 200, 255)';
+		// rect.opacity = 0.75;
+		// rect.noStroke();
+
+		// function Hexagon(polygon) {
+		// 	this.polygon = polygon;
+		// }
+
+
+   function getRandomColor() {
+            return 'rgb('
+              + Math.floor(Math.random() * 255) + ','
+              + Math.floor(Math.random() * 255) + ','
+              + Math.floor(Math.random() * 255) + ')';
+          }
+
+
+var hexagon = function(x, y) {
+		var x = x;
+		var y = y;
+		var c = 100;
+	  var b = Math.sqrt(c*c - (c/2)*(c/2));
+		var coords = [x - b, y + c/2, x, y+ c, x + b, y + c/2, x + b, y - c/2, x, y-c, x - b, y - c/2];
+		var x1 = x - b;
+		var y1 = y + c/2;
+		var x2 = x;
+		var y2 = y+ c;
+		var x3 = x + b;
+		var y3 = y + c/2;
+		var x4 = x + b;
+		var y4 = y - c/2;
+		var x5 = x;
+		var y5 = y-c;
+		var x6 = x - b;
+		var y6 = y - c/2;
+		console.log(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6);
+		var tile = two.makePolygon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, true, false)
+		tile.fill = '#7c9673'
+		tile.stroke = '#394635'
+		return tile
+	};
+
+var hexagons = [(hexagon(250, 250)), hexagon(425, 250)]
+
+
+
+
+// var tile2 = firstHexagon.clone()
+// tile2.translation.set(500, 0)
+// firstHexagon.clone(350, 350)
+// firstHexagon.fill = '#FF8000'
+
+$(function() {
+
+	hexagons.forEach(function(hexagon) {
+
+
+	var $hex = $(hexagon._renderer.elem)
+	$hex.css('cursor', 'pointer').on('click', function(event) {
+		hexagon.fill = getRandomColor();
+		two.update()
+	})
+
+	$hex
+	});
+})
+
+
+
+
+
+
+
+
+
+		// var coordinates = function() {
+		// 	 $elem.on("click", function(e){
+		// 	 var p = new Hexagon(e.pageX, e.pageY);
+		// });
+		// },
+
+
+		// polygon.fill = 'rgb(0, 200, 255)';
+		// polygon.opacity = 0.75;
+		// polygon.noStroke();
+
+
+
+		// Don't forget to tell two to render everything
+		// to the screen
+		two.update();
+	</script>
+</body>
+</html>
