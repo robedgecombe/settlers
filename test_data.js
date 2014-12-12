@@ -1,4 +1,4 @@
-{
+var data = {
     "board": {
         "id": 29,
         "tiles": [
