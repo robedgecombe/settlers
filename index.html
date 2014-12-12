@@ -75,8 +75,9 @@ var hexagon = function(x, y) {
 		return tile
 	};
 
+var hexagons = [(hexagon(250, 250)), hexagon(425, 250)]
 
-	var firstHexagon = hexagon(250, 250);
+
 
 
 // var tile2 = firstHexagon.clone()
@@ -85,12 +86,21 @@ var hexagon = function(x, y) {
 // firstHexagon.fill = '#FF8000'
 
 $(function() {
-	var $hex = $(firstHexagon._renderer.elem)
+
+	hexagons.forEach(function(hexagon) {
+
+
+	var $hex = $(hexagon._renderer.elem)
 	$hex.css('cursor', 'pointer').on('click', function(event) {
-		firstHexagon.fill = getRandomColor();
+		hexagon.fill = getRandomColor();
 		two.update()
+	})
+
+	$hex
 	});
 })
+
+
 
 
 
