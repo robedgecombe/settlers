@@ -24,7 +24,11 @@ Board.prototype = {
 			var y5 = y-c;
 			var x6 = x - b;
 			var y6 = y - c/2;
-			return two.makePolygon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, true, false)
+			var hexagon = two.makePolygon(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, true, false)
+			hexagon.fill = "#FFF";
+			hexagon.stroke = "#1c75bc";
+			hexagon.linewidth = 30;
+			return hexagon
 	},
 	findHexagonCentrePoint: function(serverX, serverY, canvasCentreX, canvasCentreY) {
 			var canvasXTemp;

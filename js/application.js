@@ -79,10 +79,14 @@
 
 $(function() {
 	// printBoard(data.board.tiles)
-	b = new Board()
-	b.getServerTiles()
-	b.makeHexagons()
-	console.log(b.hexagons)
+
+	var game = new BoardController();
+	game.start();
+
+	// b = new Board()
+	// b.getServerTiles()
+	// b.makeHexagons()
+	// console.log(b.hexagons)
 });
 
 
