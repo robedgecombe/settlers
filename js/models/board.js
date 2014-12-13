@@ -55,6 +55,10 @@ Board.prototype = {
 		var hexagonCentre = this.findHexagonCentrePoint(serverX, serverY, 500, 500);
 		var hexagon = this.makeHexagon(hexagonCentre[0], hexagonCentre[1])
 		var hexagonPoly = this.makeHexagonPoly(hexagon)
+		var id = "[" + String(serverX) + "," + String(serverY) + "]"
+		hexagonPoly.id = id
+		// var hexPoly = $(hexagonPoly).data("serverCoords", {x: serverX, y: serverY});
+		// console.log(hexPoly)
 		return hexagonPoly
 	},
 	makeHexagons: function(){
@@ -62,5 +66,8 @@ Board.prototype = {
 		this.serverTiles.forEach(function(tile) {
 			thisBoard.hexagons.push(thisBoard.makeCanvasHexagon(tile.serverX, tile.serverY))
 		})
+	},
+	logClick: function(event) {
+		console.log(event.target.id)
 	}
 };

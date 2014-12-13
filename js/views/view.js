@@ -1,5 +1,5 @@
 var View = function(controller) {
-
+	this.controller = controller;
 };
 
 
@@ -12,11 +12,14 @@ View.prototype = {
 		hexagons.forEach(function(hexagon) {
 			var $hex = $(hexagon._renderer.elem)
 			$hex.css('cursor', 'pointer').on('click', function(event) {
-				hexagon.fill = thisView.getRandomColor();
-				two.update();
+				thisView.changeColor(hexagon);
+				thisView.controller.board.logClick(event);
 			})
-			$hex
 		})
+	},
+	changeColor: function(hexagon) {
+		hexagon.fill = this.getRandomColor();
+		two.update();
 	},
 	getRandomColor: function() {
     return 'rgb('
