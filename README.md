@@ -1,0 +1,1 @@
+this was built during the initial stages of our group project app which became 'Devs-of-Eda', an online board game based on the rules of Settlers. It was our 'Final Project' for the DevAcademy course that I did in 2014. This shows the initial workings of the front end, with JavaScript using the library two.js
